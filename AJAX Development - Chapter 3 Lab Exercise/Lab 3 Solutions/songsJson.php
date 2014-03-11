@@ -1,0 +1,36 @@
+<?php
+$output = '{';
+$output .= '"catalog": {';
+$output .= '"song": [';
+$output .= '{';
+$output .= '"title": "I Want to Know What Love Is",';
+$output .= '"artist": "Foreigner",';
+$output .= '"rating": "10"';
+$output .= '},{';
+$output .= '"title": "Tragedy",';
+$output .= '"artist": "Bee Gees",';
+$output .= '"rating": "6"';
+$output .= '},{';
+$output .= '"title": "They Dance Alone",';
+$output .= '"artist": "Sting",';
+$output .= '"rating": "10"';
+$output .= '},{';
+$output .= '"title": "Biko",';
+$output .= '"artist": "Peter Gabriel",';
+$output .= '"rating": "10"';
+$output .= '},{';
+$output .= '"title": "Keep On Loving You",';
+$output .= '"artist": "REO Speedwagon",';
+$output .= '"rating": "9"';
+$output .= '},{';
+$output .= '"title": "Sailing",';
+$output .= '"artist": "Christopher Cross",';
+$output .= '"rating": "9"';
+$output .= '},{';
+$output .= '"title": "Beat It",';
+$output .= '"artist": "Michael Jackson",';
+$output .= '"rating": "7"';
+$output .= '}';
+$output .= ']}}';
+echo($output);
+?>

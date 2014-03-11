@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
+    <xsl:template match="/">
+        <html>
+            <body>
+                <h1>Catalog of Songs</h1>
+                <table cellspacing="5">
+                    <tr style="background-color: #cccccc">
+                        <th>Song Title</th>
+                        <th>Artist</th>
+                        <th>Rating</th>
+                    </tr>
+                    <xsl:for-each select="catalog/song" >
+                        <xsl:sort select="title" order="ascending" />
+                        <xsl:choose>
+                            <xsl:when test="rating &lt; 8">
+                                <tr style="background: #000000; color: #ffffff">
+                                    <td><xsl:value-of select="title" /></td>
+                                    <td><xsl:value-of select="artist" /></td>
+                                    <td><xsl:value-of select="rating" /></td>
+                                </tr>
+                            </xsl:when>
+                            <xsl:when test="rating = 10">
+                                <tr style="background: #00FF00; color: #ffffff">
+                                    <td><xsl:value-of select="title" /></td>
+                                    <td><xsl:value-of select="artist" /></td>
+                                    <td><xsl:value-of select="rating" /></td>
+                                </tr>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <tr style="background: #ffffff; color: #000000">
+                                    <td><xsl:value-of select="title" /></td>
+                                    <td><xsl:value-of select="artist" /></td>
+                                    <td><xsl:value-of select="rating" /></td>
+                                </tr>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
+                </table>
+            </body>
+        </html>
+    </xsl:template>
+</xsl:stylesheet>

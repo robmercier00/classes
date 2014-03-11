@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Chapter 3 Lab</title>
+    <script type="text/javascript">
+        var xmlhttp;
+        var json;
+        
+        function getJson()
+        {
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = callback;
+            
+            xmlhttp.open("GET", ("songsJson.php?=" ), true);
+            xmlhttp.send();
+        }
+        
+        function callback()
+        {
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+            {
+                json = eval("(" + xmlhttp.responseText + ")");
+                //console.log(json);
+                displayJson();
+            }
+        }
+        function displayJson()
+        {
+            var output = "<table><tr><th>Title</th><th>Artist</th><th>Rating</th></tr>";
+                for (var x = 0; x <json.catalog.song.length;x++)
+                {
+                    var title = json.catalog.song[x].title;
+                    var artist = json.catalog.song[x].artist;
+                    var rating = json.catalog.song[x].rating;
+                    var line = "<tr><td>" + title + "</td><td>" + artist + "</td><td>" + rating + "</td></tr>";
+                    output += line;
+                }
+                output += "<tr><td><input type='text' id='title' /></td><td><input type='text' id='artist' /></td><td><input type='text' id='rating' /></td></tr></table>";
+                document.getElementById("result").innerHTML = output;
+        }
+        function addToJson()
+        {
+            var title = document.getElementById("title").value;
+            var artist = document.getElementById("artist").value;
+            var rating = document.getElementById("rating").value;
+            
+            var x = json.catalog.song.length;
+            console.log(x);
+            json.catalog.song.push({"title" : title,
+                                   "artist" : artist,
+                                   "rating" : rating});
+            displayJson();
+        }
+    </script>
+</head>
+<body>
+    <div id="result"></div>
+    <input type="button" value="get JSON" onclick="getJson()" /><input type="button" value="Add Song" onclick="addToJson()" />
+</body>
+</html>

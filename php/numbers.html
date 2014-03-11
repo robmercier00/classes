@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <title>Numb3rs</title>
+</head>
+<body>
+    <table cellspacing="5">
+        <th>Enter a number and click the button to display all of its factors</th>
+        <tr>
+            <td><input type="text" id="number" /></td>
+        </tr>
+        <tr>
+            <td><input type="button" id="getNumber" value="Get Factors" /></td>
+        </tr>
+    </table>
+        <div id="content"></div>
+
+    <script type="text/javascript" language="javascript" src="../javascript/jquery2.js"></script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(
+            function(){
+                $("#getNumber").click(
+                    function(){
+                        var number = $('#number').val();
+                        var url = 'factors.php?number=' + number;
+                        $.ajax({
+                            url: url,
+                            success: function(result)
+                                {
+                                    $('#content').html(result);
+                                }
+                                });
+                    }
+                );
+            }
+        );
+    </script>
+</body>
+</html>
